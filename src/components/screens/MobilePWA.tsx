@@ -173,7 +173,7 @@ function TabTugas() {
                 <h3 className="font-bold text-slate-100 text-[11px] leading-tight">{active.title}</h3>
               </div>
             </div>
-            <div className="bg-gold-500 text-[#0B1120] px-2 py-0.5 rounded-full text-[10px] font-bold font-data">Rp {active.reward.toLocaleString('id-ID')}</div>
+            <div className="bg-gold-500 text-[#0B1120] px-2 py-0.5 rounded-full text-[10px] font-bold font-data">{active.reward.toLocaleString('id-ID')} Poin</div>
           </div>
 
           <div className="space-y-1 text-[10px] mb-2">
@@ -186,8 +186,8 @@ function TabTugas() {
           <div className="bg-gold-500/10 rounded-lg p-2 border border-gold-500/20 mb-2 flex items-start space-x-2">
             <Coins className="w-3.5 h-3.5 text-gold-400 shrink-0 mt-0.5" />
             <div>
-              <p className="text-[9px] font-bold text-slate-100">Deposit Stake: Rp {active.stakeAmount.toLocaleString('id-ID')}</p>
-              <p className="text-[8px] text-slate-500">Dikembalikan + reward jika jujur. Hangus jika curang.</p>
+              <p className="text-[9px] font-bold text-slate-100">Jaminan Reputasi: {active.stakeAmount / 1000} Poin Trust</p>
+              <p className="text-[8px] text-slate-500">Skor dikembalikan + reward jika jujur. Penurunan reputasi jika curang.</p>
             </div>
           </div>
 
@@ -372,7 +372,7 @@ function TabTugas() {
                       <span className="text-[10px] text-slate-500 flex items-center"><MapPin className="w-2.5 h-2.5 mr-0.5" />{task.distance}</span>
                       {task.status !== 'completed' && <span className="text-[10px] text-slate-500 flex items-center"><Clock className="w-2.5 h-2.5 mr-0.5" />{task.deadline}</span>}
                     </div>
-                    <span className="text-xs font-bold text-gold-400 font-data">Rp {task.reward.toLocaleString('id-ID')}</span>
+                    <span className="text-xs font-bold text-gold-400 font-data">{task.reward.toLocaleString('id-ID')} Poin</span>
                   </div>
                   <div className="mt-1.5 flex items-center justify-between">
                     <ConsensusIndicator done={task.consensus.done} total={task.consensus.total} />
@@ -466,12 +466,12 @@ function TabReward() {
       <div className="rounded-2xl p-5 text-white relative overflow-hidden border border-brand-500/20" style={{ background: 'linear-gradient(135deg, #059669 0%, #0B1120 70%)' }}>
         <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
         <p className="text-xs text-white/70 font-medium mb-1">Saldo Reward</p>
-        <p className="text-3xl font-black tracking-tight mb-3 font-data">Rp {points.toLocaleString('id-ID')}</p>
+        <p className="text-3xl font-black tracking-tight mb-3 font-data">{points.toLocaleString('id-ID')} Poin</p>
         <div className="flex items-center space-x-4 text-[10px]">
-          <div><span className="text-white/50">Total diterima:</span> <span className="font-bold text-gold-400 font-data">Rp {totalEarned.toLocaleString('id-ID')}</span></div>
-          <div><span className="text-white/50">Bulan ini:</span> <span className="font-bold text-brand-400 font-data">+Rp 35.000</span></div>
+          <div><span className="text-white/50">Total diterima:</span> <span className="font-bold text-gold-400 font-data">{totalEarned.toLocaleString('id-ID')} Poin</span></div>
+          <div><span className="text-white/50">Bulan ini:</span> <span className="font-bold text-brand-400 font-data">+35.000 Poin</span></div>
         </div>
-        <button onClick={() => alert("Tarik saldo ke LinkAja / DANA / QRIS...")} className="mt-4 w-full py-2.5 bg-gold-500 text-[#0B1120] rounded-xl text-xs font-bold active:scale-95 transition-transform">Tarik ke e-Wallet / Bank</button>
+        <button onClick={() => alert("Voucher digital Koperasi Merah Putih diterbitkan! Kode QR siap dibelanjakan di koperasi terdekat.")} className="mt-4 w-full py-2.5 bg-gold-500 text-[#0B1120] rounded-xl text-xs font-bold active:scale-95 transition-transform">Tukar Voucher Koperasi Merah Putih</button>
       </div>
 
       {/* BPD Tax integration */}
@@ -487,14 +487,14 @@ function TabReward() {
             <CheckCircle2 className="w-4 h-4 text-brand-400" />
             <div>
               <p className="text-[10px] font-bold text-brand-300">Pembayaran Sukses</p>
-              <p className="text-[8px] text-slate-400">Potongan Rp45.000 diaplikasikan ke NOP Pajak Anda.</p>
+              <p className="text-[8px] text-slate-400">Potongan Rp45.000 (dari 45.000 Poin) diaplikasikan ke NOP Pajak Anda.</p>
             </div>
           </div>
         ) : (
           <div className="bg-white/[0.03] rounded-xl p-3 border border-white/[0.06] space-y-2">
             <div className="flex justify-between text-[10px]"><span className="text-slate-500 font-medium">NOP Pajak Anda:</span><span className="font-bold text-slate-200 font-data">32.04.120.003...</span></div>
             <div className="flex justify-between text-[10px]"><span className="text-slate-500 font-medium">Tagihan PBB Aktif:</span><span className="font-bold text-slate-200 font-data">Rp 120.000</span></div>
-            <div className="flex justify-between text-[10px]"><span className="text-slate-500 font-medium">Subsidi Loyalty Points:</span><span className="font-bold text-brand-400 font-data">-Rp {points.toLocaleString('id-ID')}</span></div>
+            <div className="flex justify-between text-[10px]"><span className="text-slate-500 font-medium">Subsidi Loyalty Points:</span><span className="font-bold text-brand-400 font-data">-{points.toLocaleString('id-ID')} Pts (Rp45.000)</span></div>
             <hr className="border-white/10" />
             <div className="flex justify-between text-[10px]"><span className="text-slate-400 font-bold">Sisa Tagihan Bersih:</span><span className="font-black text-slate-100 font-data">Rp {(120000 - points).toLocaleString('id-ID')}</span></div>
 
@@ -510,11 +510,11 @@ function TabReward() {
         <div className="flex items-center space-x-2">
           <Coins className="w-5 h-5 text-gold-400" />
           <div>
-            <p className="text-[10px] font-bold text-slate-100">Deposit Stake Aktif</p>
-            <p className="text-[8px] text-slate-500">2 task in-progress</p>
+            <p className="text-[10px] font-bold text-slate-100">Reputasi Terjamin (Stake)</p>
+            <p className="text-[8px] text-slate-500">2 misi berjalan</p>
           </div>
         </div>
-        <span className="text-sm font-black text-gold-400 font-data">Rp 20.000</span>
+        <span className="text-sm font-black text-gold-400 font-data">20 Poin Trust</span>
       </div>
 
       <h4 className="font-bold text-slate-100 text-sm">Riwayat Reward</h4>
@@ -531,7 +531,7 @@ function TabReward() {
               </div>
             </div>
             <span className={`text-xs font-bold font-data ${r.amount > 0 ? (r.status === 'success' ? 'text-brand-400' : 'text-gold-400') : 'text-red-400'}`}>
-              {r.amount > 0 ? '+' : ''}Rp {r.amount.toLocaleString('id-ID')}
+              {r.amount > 0 ? '+' : ''}{r.amount.toLocaleString('id-ID')} Poin
             </span>
           </div>
         ))}
@@ -606,7 +606,7 @@ function TabProfil() {
 
       {/* Stats */}
       <div className="grid grid-cols-2 gap-2">
-        {[["27", "Tasks Selesai", "text-slate-100"], ["92%", "Akurasi", "text-brand-400"], ["Rp 405K", "Total Earned", "text-gold-400"], ["0", "Pelanggaran", "text-purple-400"]].map(([v, l, c]) => (
+        {[["27", "Tasks Selesai", "text-slate-100"], ["92%", "Akurasi", "text-brand-400"], ["405K Poin", "Total Earned", "text-gold-400"], ["0", "Pelanggaran", "text-purple-400"]].map(([v, l, c]) => (
           <div key={l} className="bg-surface rounded-xl p-2.5 border border-white/[0.06] text-center">
             <p className={`text-lg font-black font-data ${c}`}>{v}</p>
             <p className="text-[8px] text-slate-500 font-medium">{l}</p>
@@ -695,7 +695,7 @@ function AppHeader({ topPad }: { topPad: string }) {
         </div>
       </div>
       <div className="bg-gold-500/10 text-gold-400 px-3 py-1.5 rounded-full font-bold text-sm flex items-center border border-gold-500/20 font-data">
-        <span className="mr-1">Rp</span>45.000
+        45.000 Poin
       </div>
     </div>
   );

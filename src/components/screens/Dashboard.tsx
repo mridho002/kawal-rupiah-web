@@ -17,7 +17,7 @@ const tooltipStyle = {
 
 const heroStats = [
   { label: "Penghematan APBD (YTD)", value: "Rp 14,7 M", delta: "+12,3% bln lalu", accent: "accent-emerald", color: "text-brand-400", icon: Wallet, deltaColor: "text-brand-400" },
-  { label: "Proyek Diawasi", value: "847", delta: "23 provinsi pilot", accent: "accent-info", color: "text-blue-400", icon: ShieldCheck, deltaColor: "text-slate-400" },
+  { label: "Proyek Diawasi", value: "847", delta: "3 Kec. Pilot (Kab. Bandung)", accent: "accent-info", color: "text-blue-400", icon: ShieldCheck, deltaColor: "text-slate-400" },
   { label: "Warga Aktif", value: "6.234", delta: "+418 minggu ini", accent: "accent-gold", color: "text-gold-400", icon: Users, deltaColor: "text-gold-400" },
   { label: "Anomali Terdeteksi", value: "23", delta: "Akurasi AI 94,7%", accent: "accent-danger", color: "text-red-400", icon: Activity, deltaColor: "text-red-400" },
 ];
