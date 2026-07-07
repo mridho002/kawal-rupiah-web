@@ -1,116 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Asclepius</title>
-
-    <!-- Own Styles -->
+    <title>Kawal Rupiah - Platform GovTech Pengawasan APBD Terintegrasi</title>
+    <meta name="description" content="Kawal Rupiah adalah platform inovasi GovTech nasional yang menggabungkan kecerdasan buatan (AI Price Oracle) dan pengawasan warga (Citizen Mining) untuk mencegah kebocoran anggaran daerah." />
+    
+    <!-- Modern Styling -->
     <link rel="stylesheet" href="src/styles/styles.css" />
     <link rel="stylesheet" href="src/styles/responsive.css" />
-
+    
+    <!-- FontAwesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
   </head>
   <body>
     <div id="app">
-      <nav>
+      <!-- Navbar -->
+      <nav class="navbar">
         <div class="nav-container">
-          <div class="container">
-            <div class="nav-content">
-              <div class="brand-name">
-                <a href="/">Asclepius</a>
-              </div>
-              <ul class="nav-list">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Pricing</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Terms</a></li>
-              </ul>
-            </div>
-          </div>
+          <a href="#" class="brand">
+            <i class="fa-solid fa-shield-halved"></i> Kawal<span>Rupiah</span>
+          </a>
+          <ul class="nav-links">
+            <li><a href="#fitur">Fitur Utama</a></li>
+            <li><a href="#demo">Demo & Mockup</a></li>
+            <li><a href="#alur">Alur Kerja</a></li>
+            <li><a href="Proposal_Final_Kawal_Rupiah.pdf" class="nav-btn" download><i class="fa-solid fa-file-pdf"></i> Unduh Proposal</a></li>
+          </ul>
         </div>
       </nav>
 
-      <header>
+      <!-- Hero Section -->
+      <header class="hero">
         <div class="container">
-          <div class="jumbotron">
-            <div class="inner-jumbotron">
-              <h2>Free Skin Prediction</h2>
-              <p>Take advantage of free fast and reliable skin image prediction now!</p>
-            </div>
+          <span class="hero-tag"><i class="fa-solid fa-award"></i> PIDI X Digdaya Hackathon - Tim P1081</span>
+          <h1>Mengamankan Anggaran Negara,<br><span>Mensejahterakan Rakyat</span></h1>
+          <p>
+            Solusi GovTech nasional terintegrasi untuk mencegah kebocoran APBD sejak tahap perencanaan menggunakan kecerdasan buatan, serta mengawal pembangunan fisik secara partisipatif di lapangan.
+          </p>
+          <div class="hero-ctas">
+            <a href="Proposal_Final_Kawal_Rupiah.pdf" class="btn-primary" download>
+              <i class="fa-solid fa-file-arrow-down"></i> Unduh Proposal Teknis (PDF)
+            </a>
+            <a href="#demo" class="btn-secondary">
+              <i class="fa-solid fa-magnifying-glass-chart"></i> Lihat UI Mockup
+            </a>
           </div>
         </div>
       </header>
 
-      <main>
-        <div class="container">
-          <section>
-            <div class="section-title">
-              <h3>Formulir Prediksi Kulit</h3>
-            </div>
-
-            <div class="predict-container">
-              <form id="predictForm" class="predict-form" enctype="multipart/form-data">
-                <div id="dropArea">
-                  <p>
-                    Silakan klik tombol "Select your picture" atau drag & drop berkas Anda
-                    untuk memilih gambar.
-                  </p>
-                  <input type="file" id="skinFile" name="skin" accept="image/*" />
-                  <label class="btn" id="skinFileLabel" for="skinFile">
-                    Select your picture
-                  </label>
-
-                  <div id="previewImg"></div>
-                </div>
-
-                <div class="submit-form">
-                  <button class="btn" value="predict">Predict</button>
-                </div>
-              </form>
-
-              <div class="result-container">
-                <div id="waitingToPredicting">
-                  <img src="src/images/waiting.svg" alt="Waiting to predicting" />
-                  <p>Menunggu untuk memprediksi gambar</p>
-                </div>
-                <div class="loading"></div>
-                <p id="predictionError"></p>
-                <div id="result"></div>
-              </div>
-            </div>
-          </section>
+      <!-- Showcase Section (Demo & Mockup) -->
+      <section id="demo" class="showcase">
+        <div class="section-header">
+          <h2>Tampilan Sistem Kawal Rupiah</h2>
+          <p>Integrasi portal pemantauan e-Audit untuk internal auditor pemerintah (APIP) dan aplikasi audit partisipatif bagi warga lokal.</p>
         </div>
-      </main>
-
-      <footer>
-        <div class="container">
-          <hr class="footer-divider" />
-          <div class="main-footer">
-            <div class="copyright">
-              © 2024 Asclepius
-              <span class="px-1 text-muted">|</span>
-              Asclepius adalah sistem pemeriksaan kulit secara otomatis.
+        <div class="showcase-grid">
+          <!-- Web Dashboard Mockup -->
+          <div class="mockup-card">
+            <div class="mockup-header">
+              <span class="mockup-title"><i class="fa-solid fa-desktop"></i> Portal e-Audit APIP (Web)</span>
+              <span class="mockup-badge">Sisi Pemerintah</span>
             </div>
-            <div class="policies">
-              <a href="#" class="remove-style-link">Terms</a>
-              <span class="">•</span>
-              <a href="#" class="remove-style-link">Privacy</a>
+            <div class="mockup-img-wrapper">
+              <img src="src/images/mockup_web.jpg" alt="Visual Mockup Web Dashboard Kawal Rupiah" />
+            </div>
+          </div>
+
+          <!-- Mobile App Mockup -->
+          <div class="mockup-card">
+            <div class="mockup-header">
+              <span class="mockup-title"><i class="fa-solid fa-mobile-screen-button"></i> App Citizen Mining (Android)</span>
+              <span class="mockup-badge">Sisi Warga</span>
+            </div>
+            <div class="mockup-img-wrapper">
+              <img src="src/images/mockup_mobile.jpg" alt="Visual Mockup Mobile App Warga Kawal Rupiah" />
             </div>
           </div>
         </div>
+      </section>
+
+      <!-- Features Section -->
+      <section id="fitur" class="features">
+        <div class="features-container">
+          <div class="section-header">
+            <h2>Empat Pilar Solusi Utama</h2>
+            <p>Bagaimana Kawal Rupiah melindungi APBD secara komprehensif dari hulu hingga ke hilir.</p>
+          </div>
+          <div class="features-grid">
+            <!-- Feature 1 -->
+            <div class="feature-card">
+              <div class="feature-icon"><i class="fa-solid fa-brain"></i></div>
+              <h3>AI Price Oracle</h3>
+              <p>Menganalisis file rencana APBD secara otomatis berbasis RAG dan Gemini Embeddings untuk mendeteksi deviasi harga satuan tidak wajar dibanding e-Katalog LKPP.</p>
+            </div>
+            <!-- Feature 2 -->
+            <div class="feature-card">
+              <div class="feature-icon"><i class="fa-solid fa-people-group"></i></div>
+              <h3>Citizen Mining</h3>
+              <p>Mendayagunakan warga sekitar proyek sebagai verifikator fisik independen di lapangan. Melakukan unggah bukti foto dan koordinat GPS secara real-time.</p>
+            </div>
+            <!-- Feature 3 -->
+            <div class="feature-card">
+              <div class="feature-icon"><i class="fa-solid fa-store"></i></div>
+              <h3>Koperasi Merah Putih</h3>
+              <p>Voucher insentif verifikasi warga bersifat closed-loop, hanya dapat dibelanjakan untuk bahan pangan pokok di koperasi mitra untuk menggerakkan ekonomi lokal.</p>
+            </div>
+            <!-- Feature 4 -->
+            <div class="feature-card">
+              <div class="feature-icon"><i class="fa-solid fa-circle-nodes"></i></div>
+              <h3>Zero-Touch Money Flow</h3>
+              <p>Otomatisasi pencatatan audit log yang aman dan transparan tanpa celah intervensi, memastikan dana insentif mengalir tepat sasaran.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Workflow Section -->
+      <section id="alur" class="workflow">
+        <div class="workflow-container">
+          <div class="section-header">
+            <h2>Alur Sistem Terintegrasi</h2>
+            <p>Langkah-langkah operasional platform Kawal Rupiah dari perencanaan hingga pengawasan fisik.</p>
+          </div>
+          <div class="workflow-steps">
+            <div class="workflow-step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h3>Analisis & Deteksi Dini</h3>
+                <p>Dokumen usulan APBD diunggah ke sistem dan diproses oleh AI Price Oracle untuk menemukan deviasi harga barang/jasa.</p>
+              </div>
+            </div>
+            <div class="workflow-step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h3>Pembuatan Misi Crowdsourcing</h3>
+                <p>Misi verifikasi di lapangan dibagikan secara otomatis ke aplikasi warga lokal di sekitar koordinat lokasi proyek fisik.</p>
+              </div>
+            </div>
+            <div class="workflow-step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h3>Verifikasi Lapangan Multi-Tahap</h3>
+                <p>Warga mengambil foto real-time dengan proteksi GPS anti-root dan anti-mock location untuk memastikan keaslian lokasi.</p>
+              </div>
+            </div>
+            <div class="workflow-step">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <h3>Pencairan Insentif Koperasi</h3>
+                <p>Setelah lolos verifikasi konsensus, warga mendapatkan E-Voucher belanja bahan pangan pokok di Koperasi Merah Putih setempat.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <div class="footer-content">
+          <a href="#" class="footer-logo">
+            <i class="fa-solid fa-shield-halved"></i> Kawal<span>Rupiah</span>
+          </a>
+          <ul class="footer-links">
+            <li><a href="Proposal_Final_Kawal_Rupiah.pdf" download>Proposal PDF</a></li>
+            <li><a href="mailto:ridho@kawalrupiah.web.id">Kontak Tim</a></li>
+            <li><a href="https://kawalrupiah.web.id">Website Resmi</a></li>
+          </ul>
+          <p class="footer-text">
+            © 2026 Tim Kawal Rupiah. Program Inkubasi PIDI X Digdaya Hackathon Kemenperin RI (ID: P1081).
+          </p>
+        </div>
       </footer>
     </div>
-
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"
-      integrity="sha512-Tn2m0TIpgVyTzzvmxLNuqbSJH3JP8jm+Cy3hvHrW7ndTDcJ1w5mBiksqDBb8GpE2ksktFvDB/ykZ0mDpsZj20w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="src/scripts/utils.js"></script>
-    <script src="src/scripts/api.js"></script>
-    <script src="src/scripts/main.js"></script>
   </body>
 </html>
