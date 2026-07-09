@@ -18,7 +18,7 @@ export default function PengaturanScreen() {
     { id: "auto_block", label: "Auto-Block Pembayaran", desc: "Otomatis blokir pembayaran jika terdeteksi anomali", icon: Shield, enabled: true, iconColor: "text-gold-400" },
     { id: "dark", label: "Dark Mode", desc: "Tampilan gelap Garuda Shield untuk kenyamanan mata", icon: Moon, enabled: true, iconColor: "text-blue-400" },
     { id: "public", label: "Transparansi Publik", desc: "Data anomali dapat diakses warga via Citizen PWA", icon: Eye, enabled: true, iconColor: "text-brand-400" },
-    { id: "dlt", label: "DLT Sync Auto", desc: "Sinkronisasi otomatis ke semua node Hyperledger", icon: Database, enabled: true, iconColor: "text-blue-400" },
+    { id: "dlt", label: "Sinkronisasi Otomatis Ledger", desc: "Otomatis mencatat log audit ke sistem terdesentralisasi", icon: Database, enabled: true, iconColor: "text-blue-400" },
     { id: "2fa", label: "Two-Factor Authentication", desc: "Keamanan ganda untuk akses admin", icon: Lock, enabled: true, iconColor: "text-red-400" },
   ]);
 
@@ -61,7 +61,7 @@ export default function PengaturanScreen() {
         <div className="gs-card p-5">
           <div className="flex items-center gap-3 mb-3">
             <div className="w-10 h-10 bg-blue-500/10 rounded-xl flex items-center justify-center"><Globe className="w-5 h-5 text-blue-400" /></div>
-            <h3 className="font-bold text-slate-100 text-sm">Node DLT</h3>
+            <h3 className="font-bold text-slate-100 text-sm">Node Verifikasi</h3>
           </div>
           <div className="mt-2 space-y-2">
             {[["KPK Node", "CONNECTED", "brand"], ["BPK Node", "SYNCING", "gold"], ["BI Node", "CONNECTED", "brand"]].map(([k, v, c]) => (
@@ -71,7 +71,7 @@ export default function PengaturanScreen() {
               </div>
             ))}
           </div>
-          <p className="text-[9px] text-slate-600 mt-3 font-data">Hyperledger Fabric v2.5</p>
+          <p className="text-[9px] text-slate-600 mt-3 font-data">Jaringan Terdesentralisasi</p>
         </div>
 
         <div className="gs-card p-5">
@@ -92,17 +92,17 @@ export default function PengaturanScreen() {
       <div className="gs-panel p-6">
         <h3 className="font-bold text-slate-100 text-sm mb-4 flex items-center">
           <Shield className="w-5 h-5 mr-2 text-blue-400" />
-          Arsitektur Keamanan Agentic
+          Sistem Keamanan Kecerdasan Buatan (AI)
         </h3>
         <p className="text-xs text-slate-500 mb-6 leading-relaxed max-w-4xl">
-          Sistem keamanan kognitif untuk melindungi integritas LLM Orchestrator dan mencegah eksploitasi prompt injection, bypass otorisasi (RBAC), serta halusinasi data perencanaan daerah.
+          Sistem keamanan pintar untuk menjaga kestabilan AI, mencegah manipulasi data (prompt injection), mengatur batas akses pengguna, serta menghindari kesalahan pembacaan anggaran.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
-            { t: "1. Sanitasi RAG (Input Sanitization)", d: "Memproses PDF APBD melalui parser khusus untuk menyaring instruksi imperatif (indirect prompt injection) sebelum masuk ke Vector Database (Qdrant)." },
-            { t: "2. JWT-Forwarding Tool Gateway", d: "Semua execute/write tools diisolasi di balik API Gateway. Token JWT user diteruskan untuk membatasi aksi LLM agar tidak bisa mem-bypass RBAC." },
-            { t: "3. Proctoring Halusinasi Real-time", d: "Verifikasi jawaban AI real-time dengan model Cross-Encoder ringan (latensi <100ms di produksi), mengunci evaluasi RAGAS pada offline CI/CD." },
-            { t: "4. Hierarchical Tool Routing", d: "Membagi puluhan tool menjadi sub-kategori (LKPP, LPSE, retail APIs) dan merutekannya bertingkat untuk menghindari semantic collision & context bloat." },
+            { t: "1. Penyaringan Berkas (File Sanitization)", d: "Menyaring file PDF anggaran untuk mendeteksi perintah manipulatif sebelum disimpan dan diolah oleh AI." },
+            { t: "2. Pembatasan Akses AI (Access Gateway)", d: "Membatasi ruang gerak AI agar tidak bisa memodifikasi data penting tanpa izin resmi pengguna." },
+            { t: "3. Pencegah Jawaban Palsu (Anti-Hallucination)", d: "Mengecek akurasi jawaban AI secara instan untuk mencegah jawaban palsu atau mengada-ada sebelum ditampilkan." },
+            { t: "4. Pengelompokan Sumber Data (Data Routing)", d: "Mengelompokkan rujukan database (seperti e-Katalog dan harga pasar) agar pencarian harga oleh AI tetap cepat dan relevan." },
           ].map((item) => (
             <div key={item.t} className="border border-white/[0.06] rounded-xl p-4 bg-white/[0.02] space-y-2">
               <div className="flex justify-between items-center gap-2">

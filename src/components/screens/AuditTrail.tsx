@@ -24,9 +24,9 @@ export default function AuditTrailScreen() {
         <div>
           <h2 className="text-2xl font-bold flex items-center text-slate-50">
             <Lock className="w-6 h-6 mr-3 text-brand-400" />
-            Audit Trail — Immutable Ledger
+            Catatan Audit — Riwayat Transaksi
           </h2>
-          <p className="text-sm text-slate-400 mt-1 pl-9">Bukti tak terbantahkan dengan Hyperledger Fabric (Enterprise DLT)</p>
+          <p className="text-sm text-slate-400 mt-1 pl-9">Catatan riwayat audit yang aman dan tidak dapat diubah (Ledger Aman)</p>
         </div>
         <button className="flex items-center gap-2 px-4 py-2 border border-white/10 bg-white/5 text-slate-300 rounded-xl hover:bg-white/10 transition-colors text-sm font-medium w-fit">
           <Download className="w-4 h-4" /><span>Export BPK Report</span>
@@ -127,7 +127,7 @@ export default function AuditTrailScreen() {
         {/* Table Ledger */}
         <h3 className="font-bold text-slate-100 mb-4 text-sm border-b border-white/[0.06] pb-3 flex items-center">
           <FileText className="w-4 h-4 mr-2 text-slate-500" />
-          Log Transaksi DLT (real-time)
+          Daftar Transaksi Audit (real-time)
         </h3>
 
         <div className="overflow-x-auto custom-scrollbar rounded-lg border border-white/[0.06]">
@@ -181,7 +181,7 @@ export default function AuditTrailScreen() {
         <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-slate-500 border-t border-white/[0.06] pt-4">
           <div className="flex items-center gap-2">
             <Shield className="w-4 h-4 text-brand-400" />
-            <span className="font-medium">Powered by Hyperledger Fabric v2.5</span>
+            <span className="font-medium">Sistem Pencatatan Terdesentralisasi</span>
           </div>
           <div className="flex flex-wrap gap-x-5 gap-y-1">
             <span className="flex items-center"><span className="w-2 h-2 rounded-full bg-brand-400 mr-2 pulse-live"></span>Node KPK: Connected</span>

@@ -71,7 +71,7 @@ export default function AnalisisDataScreen() {
         <div className="gs-card accent-bar accent-danger p-5 pl-6">
           <p className="text-xs text-slate-400 font-semibold mb-1">Total Anomali</p>
           <p className="text-3xl font-bold text-red-400 font-data">70</p>
-          <p className="text-[10px] text-red-400 font-bold mt-1">6,8% detection rate</p>
+          <p className="text-[10px] text-red-400 font-bold mt-1">Tingkat deteksi: 6,8%</p>
         </div>
         <div className="gs-card accent-bar accent-gold p-5 pl-6">
           <p className="text-xs text-slate-400 font-semibold mb-1">Potensi Kerugian</p>
@@ -81,7 +81,7 @@ export default function AnalisisDataScreen() {
         <div className="gs-card accent-bar accent-emerald p-5 pl-6">
           <p className="text-xs text-slate-400 font-semibold mb-1">Berhasil Dicegah</p>
           <p className="text-3xl font-bold text-brand-400 font-data">Rp 89M</p>
-          <p className="text-[10px] text-brand-400 font-bold mt-1">62,7% prevention rate</p>
+          <p className="text-[10px] text-brand-400 font-bold mt-1">Tingkat pencegahan: 62,7%</p>
         </div>
       </div>
 

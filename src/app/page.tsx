@@ -42,7 +42,7 @@ export default function LandingPage() {
           </span>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight mb-6">
             Mengamankan Anggaran Negara,<br />
-            <span className="text-gradient-brand">Menseheaderakan Rakyat</span>
+            <span className="text-gradient-brand">Mensejahterakan Rakyat</span>
           </h2>
           <p className="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto mb-8 leading-relaxed">
             Platform GovTech nasional terintegrasi dengan deteksi dini markup APBD berbasis kecerdasan buatan dan audit sosial partisipatif warga secara real-time di lapangan.
@@ -160,7 +160,7 @@ export default function LandingPage() {
             </div>
             <h4 className="text-lg font-bold mb-2">Koperasi Merah Putih</h4>
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-              Reward insentif verifikasi warga berupa e-Voucher closed-loop yang hanya dapat dibelanjakan untuk bahan pangan pokok di koperasi mitra, sekaligus menggerakkan perekonomian mikro desa.
+              Insentif verifikasi warga berupa Voucher digital belanja di Koperasi Merah Putih untuk kebutuhan pokok, demi menghidupkan warung dan koperasi lokal.
             </p>
           </div>
           <div className="gs-card p-6 card-hover">

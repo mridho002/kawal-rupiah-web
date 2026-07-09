@@ -47,13 +47,13 @@ export default function PriceOracleScreen() {
   const handleSimulatedUpload = () => {
     setIsUploading(true);
     setUploadProgress(0);
-    setUploadStep("Mengurai RKA APBD dengan LayoutLM OCR...");
+    setUploadStep("Membaca data berkas APBD...");
 
     const steps = [
-      { p: 25, s: "Sanitasi RAG (deteksi & hapus indirect prompt injection)..." },
-      { p: 50, s: "Pemetaan semantik RKA ke e-Katalog (IndoBERT)..." },
-      { p: 75, s: "Membangun Pricing Frontier via LKPP, LPSE & retail APIs..." },
-      { p: 100, s: "Selesai! Anomali tercatat ke Hyperledger Fabric." }
+      { p: 25, s: "Memeriksa keaslian berkas & menyaring teks berbahaya..." },
+      { p: 50, s: "Mencocokkan jenis barang dengan data e-Katalog LKPP..." },
+      { p: 75, s: "Membandingkan rentang harga pasar (LKPP, LPSE, retail)..." },
+      { p: 100, s: "Selesai! Selisih harga berhasil dicatat ke sistem audit." }
     ];
 
     let i = 0;
@@ -72,7 +72,7 @@ export default function PriceOracleScreen() {
         };
         setData([newItem, ...data]);
         setSelectedRow(newItem.id);
-        alert("🎉 RKA APBD Berhasil Diimpor! Terdeteksi 1 anomali kritis (+54,8% mark-up). Bukti dicatat di Hyperledger Fabric.");
+        alert("🎉 Berkas APBD Berhasil Diimpor! Terdeteksi 1 mark-up kritis (+54,8%). Data selisih harga telah disimpan di sistem audit.");
       }
     }, 1200);
   };
@@ -131,7 +131,7 @@ export default function PriceOracleScreen() {
             <div className="flex justify-between text-xs font-bold text-slate-200">
               <span className="flex items-center">
                 <span className="w-2 h-2 rounded-full bg-brand-400 mr-2 animate-ping" />
-                Pipeline Kognitif: {uploadStep}
+                Proses Deteksi AI: {uploadStep}
               </span>
               <span className="font-data">{uploadProgress}%</span>
             </div>
@@ -257,7 +257,7 @@ export default function PriceOracleScreen() {
             <div className={`mt-4 p-3 rounded-lg border text-xs leading-relaxed font-medium ${
               isAnomaliSelected ? 'bg-red-500/[0.06] border-red-500/15 text-slate-300' : 'bg-brand-500/[0.06] border-brand-500/15 text-slate-300'
             }`}>
-              <p className="font-bold text-slate-200 mb-1 text-[10px] uppercase tracking-wider flex items-center gap-1">🤖 AI Kesimpulan</p>
+              <p className="font-bold text-slate-200 mb-1 text-[10px] uppercase tracking-wider flex items-center gap-1">🤖 Rekomendasi AI</p>
               {isAnomaliSelected
                 ? <p>Harga satuan <strong className="text-red-400 font-data">Rp {selected.propUnit} Jt</strong> berada <strong className="text-red-400">{selected.diff}</strong> di atas harga wajar e-Katalog <strong className="text-blue-400 font-data">Rp {selected.ekatUnit} Jt</strong>. Dengan qty <strong className="text-slate-200 font-data">{selected.qty.toLocaleString('id-ID')}</strong>, potensi kerugian negara <strong className="text-red-400 font-data">Rp {((selected.propUnit - selected.ekatUnit) * selected.qty).toFixed(0)} Jt</strong>.</p>
                 : <p>Harga <strong className="text-slate-100">{selected.item}</strong> dalam rentang wajar. Selisih <strong className="text-brand-400">{selected.diff}</strong> masih di bawah threshold (&lt;15%).</p>

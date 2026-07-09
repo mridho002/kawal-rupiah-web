@@ -26,9 +26,9 @@ interface MiningTask {
 }
 
 const TASK_TYPE_META: Record<TaskType, { label: string; icon: typeof Camera; color: string; bg: string }> = {
-  existence: { label: "Existence Verify", icon: Camera, color: "text-blue-400", bg: "bg-blue-500/10" },
-  quality: { label: "Quality Check", icon: FileText, color: "text-gold-400", bg: "bg-gold-500/10" },
-  progress: { label: "Progress Report", icon: TrendingUp, color: "text-brand-400", bg: "bg-brand-500/10" },
+  existence: { label: "Cek Keberadaan Fisik", icon: Camera, color: "text-blue-400", bg: "bg-blue-500/10" },
+  quality: { label: "Cek Kualitas Bahan", icon: FileText, color: "text-gold-400", bg: "bg-gold-500/10" },
+  progress: { label: "Laporan Kemajuan Proyek", icon: TrendingUp, color: "text-brand-400", bg: "bg-brand-500/10" },
 };
 
 const TASKS: MiningTask[] = [
@@ -129,16 +129,16 @@ function TabTugas() {
         {/* Anti-Collusion Badges */}
         <div className="flex flex-wrap gap-1.5">
           <div className="flex items-center bg-purple-500/10 text-purple-300 text-[8px] font-bold px-2 py-1 rounded-full border border-purple-500/20">
-            <Shuffle className="w-2.5 h-2.5 mr-1" />RANDOM ASSIGN
+            <Shuffle className="w-2.5 h-2.5 mr-1" />Penugasan Acak
           </div>
           <div className="flex items-center bg-blue-500/10 text-blue-400 text-[8px] font-bold px-2 py-1 rounded-full border border-blue-500/20">
-            <MapPin className="w-2.5 h-2.5 mr-1" />{active.verifierRegions.length} KECAMATAN
+            <MapPin className="w-2.5 h-2.5 mr-1" />Sebaran Verifikator
           </div>
           <div className="flex items-center bg-white/5 text-slate-300 text-[8px] font-bold px-2 py-1 rounded-full border border-white/10">
-            <Lock className="w-2.5 h-2.5 mr-1" />ANONIM
+            <Lock className="w-2.5 h-2.5 mr-1" />Anonim (Aman)
           </div>
           <div className="flex items-center bg-gold-500/10 text-gold-400 text-[8px] font-bold px-2 py-1 rounded-full border border-gold-500/20">
-            <ImageIcon className="w-2.5 h-2.5 mr-1" />MIN {active.photoMin} FOTO
+            <ImageIcon className="w-2.5 h-2.5 mr-1" />Minimal {active.photoMin} Foto
           </div>
         </div>
 
@@ -229,12 +229,12 @@ function TabTugas() {
 
           {/* Photo Requirements */}
           <div className="bg-blue-500/[0.07] rounded-lg p-2.5 mb-2 border border-blue-500/15">
-            <p className="text-[9px] font-bold text-blue-400 uppercase tracking-wider mb-1">📸 Foto Wajib (min {active.photoMin}):</p>
+            <p className="text-[9px] font-bold text-blue-400 uppercase tracking-wider mb-1">📸 Ketentuan Foto (min {active.photoMin}):</p>
             <div className="space-y-1 text-[9px] text-slate-400">
-              <div className="flex items-center"><CheckCircle2 className="w-2.5 h-2.5 text-brand-400 mr-1 shrink-0" />Dari kamera langsung (bukan galeri)</div>
-              <div className="flex items-center"><CheckCircle2 className="w-2.5 h-2.5 text-brand-400 mr-1 shrink-0" />GPS & timestamp auto-embed EXIF</div>
-              <div className="flex items-center"><CheckCircle2 className="w-2.5 h-2.5 text-brand-400 mr-1 shrink-0" />Sudut berbeda (AI angle check)</div>
-              <div className="flex items-center"><ShieldAlert className="w-2.5 h-2.5 text-red-400 mr-1 shrink-0" />Foto duplikat = auto-suspend!</div>
+              <div className="flex items-center"><CheckCircle2 className="w-2.5 h-2.5 text-brand-400 mr-1 shrink-0" />Ambil dari kamera langsung (bukan galeri)</div>
+              <div className="flex items-center"><CheckCircle2 className="w-2.5 h-2.5 text-brand-400 mr-1 shrink-0" />Lokasi GPS & waktu terpasang otomatis</div>
+              <div className="flex items-center"><CheckCircle2 className="w-2.5 h-2.5 text-brand-400 mr-1 shrink-0" />Sudut foto berbeda (dicek oleh sistem)</div>
+              <div className="flex items-center"><ShieldAlert className="w-2.5 h-2.5 text-red-400 mr-1 shrink-0" />Kirim foto duplikat = akun ditangguhkan!</div>
             </div>
           </div>
 
@@ -246,8 +246,8 @@ function TabTugas() {
               <div className="flex justify-center mt-1.5"><ConsensusIndicator done={active.consensus.done} total={active.consensus.total} /></div>
               {active.consensus.done >= 2 && (
                 <div className="mt-1.5 bg-gold-500/10 border border-gold-500/20 rounded p-1.5">
-                  <p className="text-[8px] font-bold text-gold-400">⚠️ AI Outlier Detection Active</p>
-                  <p className="text-[7px] text-gold-400/70">Deviasi laporan antar warga sedang dianalisis</p>
+                  <p className="text-[8px] font-bold text-gold-400">⚠️ Deteksi Laporan Palsu Aktif</p>
+                  <p className="text-[7px] text-gold-400/70">Perbedaan laporan antar warga sedang dianalisis</p>
                 </div>
               )}
             </div>
@@ -256,7 +256,7 @@ function TabTugas() {
               {offlineQueue.length > 0 && (
                 <div className="bg-orange-500/[0.07] border border-orange-500/20 rounded-xl p-2.5 space-y-1.5">
                   <div className="flex justify-between items-center">
-                    <span className="text-[9px] font-bold text-orange-300 font-data">SQLite Queue: {offlineQueue.length} Foto</span>
+                    <span className="text-[9px] font-bold text-orange-300 font-data">Antrean Offline: {offlineQueue.length} Foto</span>
                     <button
                       onClick={() => {
                         setIsSyncing(true);
@@ -264,16 +264,16 @@ function TabTugas() {
                           setIsSyncing(false);
                           setOfflineQueue([]);
                           setCameraCaptured(true);
-                          alert("Berhasil sinkronisasi! Hash gambar diunggah ke Hyperledger Fabric.");
+                          alert("Berhasil sinkronisasi! Laporan Anda telah tercatat aman.");
                         }, 1500);
                       }}
                       disabled={isSyncing}
                       className="text-[8px] font-black bg-brand-500 text-[#022c22] px-2 py-1 rounded hover:bg-brand-400 transition-colors"
                     >
-                      {isSyncing ? 'Sinkron...' : 'Sync ke DLT'}
+                      {isSyncing ? 'Sinkron...' : 'Unggah Sekarang'}
                     </button>
                   </div>
-                  <p className="text-[7px] text-orange-400/80 leading-tight">Sinyal kembali. Ketuk sync untuk mengunggah stempel waktu & GPS dari SQLite lokal.</p>
+                  <p className="text-[7px] text-orange-400/80 leading-tight">Sinyal terdeteksi. Ketuk Unggah Sekarang untuk mengirim laporan yang disimpan lokal.</p>
                 </div>
               )}
 

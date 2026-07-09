@@ -180,69 +180,69 @@ export default function DashboardScreen({ setActiveTab }: { setActiveTab: (tab: 
         <div className="py-4 px-6 border-b border-white/[0.06] bg-white/[0.02] flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
           <div className="flex items-center gap-2 text-slate-100">
             <AlertTriangle className="h-5 w-5 text-gold-400" />
-            <h3 className="font-bold text-sm uppercase tracking-wider">Modul Penyelesaian Sengketa (Dispute Resolution)</h3>
+            <h3 className="font-bold text-sm uppercase tracking-wider">Penyelesaian Sengketa Penangguhan Dana</h3>
           </div>
           <span className="text-[10px] bg-red-500/15 text-red-400 border border-red-500/20 px-2.5 py-1 rounded-full font-bold w-fit">2 PENANGGUHAN DANA</span>
         </div>
 
         <div className="p-6">
           <p className="text-xs text-slate-500 mb-4 leading-relaxed max-w-4xl">
-            Jika AI SOP Engine mendeteksi deviasi anomali fisik di lapangan dari Citizen Mining, pembayaran termin proyek dibekukan otomatis di Hyperledger Fabric Smart Contract. Kontraktor & Pemda dapat mengajukan bukti sanggahan untuk dimediasi secara transparan.
+            Jika sistem mendeteksi ketidaksesuaian proyek di lapangan dari laporan warga (Citizen Mining), pencairan dana proyek dibekukan secara otomatis. Kontraktor dan Pemda dapat mengajukan bukti sanggahan untuk dimediasi secara transparan agar roda pembangunan tetap berjalan adil.
           </p>
 
           <div className="overflow-x-auto custom-scrollbar -mx-2">
             <table className="w-full text-left text-xs border-collapse min-w-[860px]">
               <thead>
                 <tr className="text-slate-500 font-semibold border-b border-white/[0.06]">
-                  <th className="py-3 px-4">Proyek & Wilayah</th>
-                  <th className="py-3 px-4">Termin / Nilai Beku</th>
-                  <th className="py-3 px-4">Pemicu Deviasi</th>
-                  <th className="py-3 px-4">Tanggal Beku</th>
-                  <th className="py-3 px-4">Sanggahan Vendor</th>
-                  <th className="py-3 px-4">Status Resolusi</th>
-                  <th className="py-3 px-4 text-right">Aksi</th>
+                  <th className="py-3 px-4">Nama Proyek & Wilayah</th>
+                  <th className="py-3 px-4">Nilai Dana Ditangguhkan</th>
+                  <th className="py-3 px-4">Penyebab Penangguhan</th>
+                  <th className="py-3 px-4">Tanggal Pembekuan</th>
+                  <th className="py-3 px-4">Sanggahan Kontraktor</th>
+                  <th className="py-3 px-4">Status Mediasi</th>
+                  <th className="py-3 px-4 text-right">Tindakan</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/[0.04]">
                 <tr className="hover:bg-white/[0.02]">
                   <td className="py-4 px-4 font-semibold text-slate-100">
                     Jembatan Cisangkuy, Kab. Bandung
-                    <span className="block text-[10px] font-normal text-slate-500">Vendor: PT Sinar Karya Mandiri</span>
+                    <span className="block text-[10px] font-normal text-slate-500">Kontraktor: PT Sinar Karya Mandiri</span>
                   </td>
                   <td className="py-4 px-4 font-bold text-red-400 font-data">Termin III (Rp 1,4 M)</td>
                   <td className="py-4 px-4">
-                    <span className="text-slate-300 font-medium">Progress Fisik &lt; 40%</span>
-                    <span className="block text-[10px] text-red-400">Rencana: 65% (Deviasi 25%)</span>
+                    <span className="text-slate-300 font-medium">Pembangunan Terlambat</span>
+                    <span className="block text-[10px] text-red-400">Baru berjalan 40% (Target: 65%)</span>
                   </td>
                   <td className="py-4 px-4 text-slate-500 font-data">28 Mei 2026</td>
                   <td className="py-4 px-4">
-                    <span className="bg-gold-500/10 text-gold-400 border border-gold-500/20 px-2 py-0.5 rounded text-[10px] font-semibold">Lampiran Bukti</span>
-                    <span className="block text-[9px] text-slate-500 mt-0.5">Force Majeure (cuaca)</span>
+                    <span className="bg-gold-500/10 text-gold-400 border border-gold-500/20 px-2 py-0.5 rounded text-[10px] font-semibold">Bukti Terlampir</span>
+                    <span className="block text-[9px] text-slate-500 mt-0.5">Kendala cuaca (hujan ekstrim)</span>
                   </td>
                   <td className="py-4 px-4">
-                    <span className="bg-orange-500/10 text-orange-400 border border-orange-500/20 px-2 py-0.5 rounded text-[10px] font-bold">DI MEDIASI</span>
+                    <span className="bg-orange-500/10 text-orange-400 border border-orange-500/20 px-2 py-0.5 rounded text-[10px] font-bold">SEDANG DIMEDIASI</span>
                   </td>
                   <td className="py-4 px-4 text-right">
-                    <button className="bg-brand-500 text-[#022c22] px-3 py-1.5 rounded-lg font-bold text-[10px] hover:bg-brand-400 transition-colors">Mediasi</button>
+                    <button className="bg-brand-500 text-[#022c22] px-3 py-1.5 rounded-lg font-bold text-[10px] hover:bg-brand-400 transition-colors">Buka Mediasi</button>
                   </td>
                 </tr>
                 <tr className="hover:bg-white/[0.02]">
                   <td className="py-4 px-4 font-semibold text-slate-100">
                     Aspal Jl. Desa Cibadak
-                    <span className="block text-[10px] font-normal text-slate-500">Vendor: CV Paving Makmur</span>
+                    <span className="block text-[10px] font-normal text-slate-500">Kontraktor: CV Paving Makmur</span>
                   </td>
                   <td className="py-4 px-4 font-bold text-red-400 font-data">Termin II (Rp 350 Jt)</td>
                   <td className="py-4 px-4">
-                    <span className="text-slate-300 font-medium">Bahan Tidak Sesuai Specs</span>
-                    <span className="block text-[10px] text-red-400">Ketebalan kurang 3cm (AI)</span>
+                    <span className="text-slate-300 font-medium">Bahan Tidak Sesuai Spek</span>
+                    <span className="block text-[10px] text-red-400">Ketebalan aspal kurang 3 cm</span>
                   </td>
                   <td className="py-4 px-4 text-slate-500 font-data">01 Jun 2026</td>
-                  <td className="py-4 px-4 text-slate-500">Belum ada tanggapan</td>
+                  <td className="py-4 px-4 text-slate-500">Belum ada penjelasan</td>
                   <td className="py-4 px-4">
-                    <span className="bg-red-500/10 text-red-400 border border-red-500/20 px-2 py-0.5 rounded text-[10px] font-bold">DIBEKUKAN</span>
+                    <span className="bg-red-500/10 text-red-400 border border-red-500/20 px-2 py-0.5 rounded text-[10px] font-bold">DITANGGUHKAN</span>
                   </td>
                   <td className="py-4 px-4 text-right">
-                    <button className="bg-white/5 text-slate-300 border border-white/10 px-3 py-1.5 rounded-lg font-bold text-[10px] hover:bg-white/10 transition-colors">Peringatan</button>
+                    <button className="bg-white/5 text-slate-300 border border-white/10 px-3 py-1.5 rounded-lg font-bold text-[10px] hover:bg-white/10 transition-colors">Kirim Teguran</button>
                   </td>
                 </tr>
               </tbody>
