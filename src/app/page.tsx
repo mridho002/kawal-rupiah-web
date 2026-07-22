@@ -50,7 +50,7 @@ export default function LandingPage() {
 
           <div className="flex items-center gap-4">
             <a
-              href="/download/kawal-rupiah-citizen-mining.apk"
+              href="https://github.com/mridho002/kawal-rupiah-web/raw/main/public/download/kawal-rupiah-citizen-mining.apk"
               download
               className="relative flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-xl bg-gold-500 hover:bg-gold-600 text-[#1a1300] transition-all glow-gold"
             >
@@ -85,7 +85,7 @@ export default function LandingPage() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
             <a
-              href="/download/kawal-rupiah-citizen-mining.apk"
+              href="https://github.com/mridho002/kawal-rupiah-web/raw/main/public/download/kawal-rupiah-citizen-mining.apk"
               download
               className="w-full sm:w-auto flex items-center justify-center gap-2 py-3 px-6 bg-gold-500 hover:bg-gold-600 text-[#1a1300] rounded-xl font-bold transition-all text-sm shadow-lg shadow-gold-500/20"
             >
