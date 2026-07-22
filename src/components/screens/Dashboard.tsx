@@ -1,256 +1,326 @@
 'use client'
 
-import { AlertTriangle, Users, Search, Bell, MapPin, ChevronRight, Activity, ShieldCheck, Wallet } from "lucide-react";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import dynamic from 'next/dynamic';
-
-const IndonesiaMap = dynamic(() => import('../IndonesiaMap'), { ssr: false });
-
-const tooltipStyle = {
-  borderRadius: '10px',
-  border: '1px solid rgba(148,163,184,0.2)',
-  background: 'rgba(17,24,39,0.95)',
-  fontSize: '12px',
-  fontWeight: 600,
-  color: '#F1F5F9',
-} as const;
-
-const heroStats = [
-  { label: "Penghematan APBD (YTD)", value: "Rp 14,7 M", delta: "+12,3% bln lalu", accent: "accent-emerald", color: "text-brand-400", icon: Wallet, deltaColor: "text-brand-400" },
-  { label: "Proyek Diawasi", value: "847", delta: "3 Kec. Pilot (Kab. Bandung)", accent: "accent-info", color: "text-blue-400", icon: ShieldCheck, deltaColor: "text-slate-400" },
-  { label: "Warga Aktif", value: "6.234", delta: "+418 minggu ini", accent: "accent-gold", color: "text-gold-400", icon: Users, deltaColor: "text-gold-400" },
-  { label: "Anomali Terdeteksi", value: "23", delta: "Akurasi AI 94,7%", accent: "accent-danger", color: "text-red-400", icon: Activity, deltaColor: "text-red-400" },
-];
+import { useState } from "react";
+import { Search, Bell, Download, ChevronDown, FileText, ExternalLink, Calendar, LogOut, Info, AlertTriangle, ShieldCheck } from "lucide-react";
 
 export default function DashboardScreen({ setActiveTab }: { setActiveTab: (tab: string) => void }) {
-  const chartData = [
-    { name: 'Diajukan', value: 25.4, fill: '#EF4444' },
-    { name: 'Pasar', value: 16.8, fill: '#3B82F6' },
-    { name: 'LKPP', value: 18.2, fill: '#64748B' },
+  const [activePeriod, setActivePeriod] = useState("Q3 2024");
+  const [activeMonth, setActiveMonth] = useState("Mar 2024");
+
+  const tableItems = [
+    {
+      id: "AK304...8",
+      description: "Laptop Administrasi",
+      spec: "i7/16GB/512GB",
+      unit: "Unit",
+      vol: 350,
+      apbdUnit: "Rp 16.5M",
+      apbdTotal: "Rp 10.5M",
+      eKatalogUnit: "Rp 10.85M",
+      diff: "52%",
+      riskStatus: "Markup Tinggi",
+      riskLevel: "red",
+    },
+    {
+      id: "AK304...8",
+      description: "Kendaraan Dinas",
+      spec: "SUV 2.5L, 32 Core...",
+      unit: "Unit",
+      vol: 15,
+      apbdUnit: "Rp 13.8M",
+      apbdTotal: "Rp 13.5M",
+      eKatalogUnit: "Rp 10.3M",
+      diff: "18%",
+      riskStatus: "Sedang",
+      riskLevel: "yellow",
+    },
+    {
+      id: "AK304...7",
+      description: "Server Rak, dll",
+      spec: "i7/16GB/32 Core...",
+      unit: "Unit",
+      vol: 10,
+      apbdUnit: "Rp 10.3M",
+      apbdTotal: "Rp 14.5M",
+      eKatalogUnit: "Rp 10.8M",
+      diff: "4%",
+      riskStatus: "Normal",
+      riskLevel: "green",
+    },
+    {
+      id: "AK304...8",
+      description: "Laptop Administrasi",
+      spec: "SUV 2.5L, 32 Core...",
+      unit: "Unit",
+      vol: 10,
+      apbdUnit: "Rp 15.3M",
+      apbdTotal: "Rp 10.8M",
+      eKatalogUnit: "Rp 10.2M",
+      diff: "4%",
+      riskStatus: "Potensi markup",
+      riskLevel: "amber",
+    },
+    {
+      id: "AK304...9",
+      description: "Kendaraan Dinas",
+      spec: "i7/16GB/512GB, ...",
+      unit: "Unit",
+      vol: 10,
+      apbdUnit: "Rp 16.5M",
+      apbdTotal: "Rp 10.8M",
+      eKatalogUnit: "Rp 10.2M",
+      diff: "3%",
+      riskStatus: "Potensi markup",
+      riskLevel: "amber",
+    },
   ];
 
   return (
     <div className="space-y-6 max-w-full pb-20">
-      {/* Top Header Row */}
-      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 glass-panel p-4 rounded-2xl">
-        <div>
-          <h2 className="text-2xl font-bold text-slate-50 flex items-center gap-2">
-            Peta Pengawasan APBD Nasional
-            <span className="flex items-center gap-1 text-[10px] font-bold text-brand-400 bg-brand-500/10 border border-brand-500/20 px-2 py-0.5 rounded-full">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-400 pulse-live" /> LIVE
-            </span>
-            <span className="flex items-center gap-1 text-[10px] font-bold text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 rounded-full">
-              🏦 BPD SP2D Escrow: Active (UU 1/2004)
-            </span>
-          </h2>
-          <p className="text-sm text-slate-400 mt-1">Deteksi anomali pengadaan barang & jasa daerah secara real-time & audit sosial partisipatif (2026)</p>
+      {/* Top Bar: Search, Notifications, User Info (Matches Image 1 Proposal Sample) */}
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
+        {/* Search Input */}
+        <div className="relative flex-1 max-w-md">
+          <Search className="absolute left-3.5 top-3 h-4 w-4 text-slate-400" />
+          <input
+            type="text"
+            placeholder="Search reports, entities..."
+            className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
+          />
         </div>
-        <div className="flex gap-3">
-          <div className="relative">
-            <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-500" />
-            <input
-              type="text"
-              placeholder="Cari provinsi/kota..."
-              className="pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-xl text-sm text-slate-100 placeholder:text-slate-500 w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500/40 transition-all"
-            />
+
+        {/* User Pill & Notifications */}
+        <div className="flex items-center justify-between md:justify-end gap-5">
+          {/* Notification Bell */}
+          <button className="relative p-2 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors">
+            <Bell className="w-5 h-5" />
+            <span className="absolute top-1.5 right-1.5 w-4 h-4 bg-red-600 text-white rounded-full text-[10px] font-bold flex items-center justify-center border-2 border-white">
+              3
+            </span>
+          </button>
+
+          {/* User Profile Pill */}
+          <div className="flex items-center gap-3 pl-4 border-l border-slate-200">
+            <div className="w-10 h-10 rounded-full bg-slate-200 border border-slate-300 overflow-hidden flex items-center justify-center font-bold text-slate-700">
+              DP
+            </div>
+            <div className="text-left leading-tight">
+              <div className="flex items-center gap-1">
+                <span className="font-bold text-slate-900 text-sm">Dita Pratiwi</span>
+                <ChevronDown className="w-3.5 h-3.5 text-slate-500" />
+              </div>
+              <span className="text-[11px] text-slate-500 block">Auditor Senior</span>
+              <span className="text-[10px] text-slate-400 font-mono block">ID: 19851024</span>
+            </div>
+            <button className="p-2 text-slate-400 hover:text-slate-700 transition-colors ml-1">
+              <LogOut className="w-4 h-4" />
+            </button>
           </div>
-          <button className="relative p-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-slate-300 transition-colors shrink-0">
-            <Bell className="h-5 w-5" />
-            <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full ring-2 ring-surface pulse-live"></span>
+        </div>
+      </div>
+
+      {/* Main Title & Action Bar */}
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h2 className="text-2xl font-black text-slate-900 tracking-tight flex items-center gap-2">
+            Pemonitoran & Analisis APBD vs e-Katalog
+          </h2>
+          <p className="text-xs text-slate-500 mt-1">Sistem Evaluasi Pengadaan Barang & Jasa Daerah Berbasis AI Price Oracle</p>
+        </div>
+
+        <div className="flex items-center gap-3 flex-wrap">
+          {/* Filter Dropdowns */}
+          <button className="flex items-center gap-2 px-3.5 py-2 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-50 shadow-xs">
+            <Calendar className="w-3.5 h-3.5 text-slate-500" />
+            <span>{activePeriod}</span>
+          </button>
+          <button className="flex items-center gap-2 px-3.5 py-2 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-50 shadow-xs">
+            <span>{activeMonth}</span>
+            <ChevronDown className="w-3.5 h-3.5 text-slate-500" />
+          </button>
+
+          {/* Unduh Laporan Button */}
+          <a
+            href="/Proposal_Final_Kawal_Rupiah.pdf"
+            download
+            className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-800 hover:bg-slate-50 shadow-xs"
+          >
+            <Download className="w-3.5 h-3.5 text-slate-600" />
+            <span>Unduh Laporan</span>
+          </a>
+        </div>
+      </div>
+
+      {/* Top 4 KPI Cards (Matches Image 1 Proposal Sample Exactly) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Card 1: Total Anggaran APBD */}
+        <div className="gov-card p-5">
+          <span className="text-xs font-semibold text-slate-500 block">Total Anggaran APBD</span>
+          <p className="text-2xl lg:text-3xl font-extrabold text-slate-900 mt-2">Rp 12.8 T</p>
+        </div>
+
+        {/* Card 2: Total Realisasi */}
+        <div className="gov-card p-5">
+          <div className="flex justify-between items-center">
+            <span className="text-xs font-semibold text-slate-500">Total Realisasi</span>
+            <span className="text-[10px] text-slate-400 font-mono">in</span>
+          </div>
+          <div className="flex justify-between items-baseline mt-2">
+            <p className="text-2xl lg:text-3xl font-extrabold text-slate-900">Rp 7.4 T</p>
+            <span className="text-xs font-bold text-blue-600">57.8%</span>
+          </div>
+          <div className="w-full bg-slate-100 h-2 rounded-full mt-3 overflow-hidden">
+            <div className="bg-blue-600 h-full rounded-full" style={{ width: '57.8%' }} />
+          </div>
+        </div>
+
+        {/* Card 3: Potensi Penghematan */}
+        <div className="gov-card p-5">
+          <div className="flex justify-between items-center">
+            <span className="text-xs font-semibold text-slate-500">Potensi Penghematan</span>
+            <span className="text-[10px] text-slate-400 font-mono">↻</span>
+          </div>
+          <div className="flex justify-between items-baseline mt-2">
+            <p className="text-2xl lg:text-3xl font-extrabold text-slate-900">Rp 298.4 M</p>
+            <span className="text-xs font-bold text-emerald-600">74%</span>
+          </div>
+          <div className="w-full bg-slate-100 h-2 rounded-full mt-3 overflow-hidden">
+            <div className="bg-emerald-500 h-full rounded-full" style={{ width: '74%' }} />
+          </div>
+        </div>
+
+        {/* Card 4: Tingkat Risiko Deviasi (Speedometer Gauge) */}
+        <div className="gov-card p-5 relative overflow-hidden">
+          <div className="flex justify-between items-start">
+            <div>
+              <span className="text-xs font-semibold text-slate-500 block">Tingkat Risiko Deviasi</span>
+              <p className="text-xl font-black text-amber-500 mt-1 leading-none">
+                Medium-<br />High
+              </p>
+            </div>
+            <Info className="w-4 h-4 text-slate-400 shrink-0" />
+          </div>
+
+          {/* Semi-circle Gauge Arc (68%) */}
+          <div className="absolute right-4 bottom-3 w-16 h-16 flex items-center justify-center">
+            <svg viewBox="0 0 36 36" className="w-16 h-16 transform -rotate-90">
+              <path
+                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                fill="none"
+                stroke="#E2E8F0"
+                strokeWidth="4"
+              />
+              <path
+                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                fill="none"
+                stroke="#F59E0B"
+                strokeWidth="4"
+                strokeDasharray="68, 100"
+              />
+            </svg>
+            <span className="absolute text-[11px] font-bold text-slate-700 font-mono">68%</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Data Table Section (Matches Image 1 Sample Exactly) */}
+      <div className="gov-card p-6">
+        <div className="flex justify-between items-center mb-6">
+          <h3 className="text-base font-bold text-slate-900">
+            &apos;Perbandingan Harga Satuan APBD Q3 2024&apos;
+          </h3>
+          <button className="flex items-center gap-1.5 text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg transition-colors">
+            <span>Batin satuan</span>
+            <ChevronDown className="w-3.5 h-3.5" />
           </button>
         </div>
-      </div>
 
-      {/* Hero Stats Row */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {heroStats.map((s, i) => {
-          const Icon = s.icon;
-          return (
-            <div
-              key={s.label}
-              className={`gs-card card-hover accent-bar ${s.accent} p-5 pl-6 animate-fade-up`}
-              style={{ animationDelay: `${i * 70}ms` }}
-            >
-              <div className="flex items-start justify-between">
-                <p className="text-xs text-slate-400 font-medium leading-snug max-w-[70%]">{s.label}</p>
-                <Icon className={`w-5 h-5 ${s.color} shrink-0`} />
-              </div>
-              <p className={`font-data text-3xl font-bold mt-2 ${s.color}`}>{s.value}</p>
-              <p className={`text-[11px] font-semibold mt-1.5 ${s.deltaColor}`}>{s.delta}</p>
-            </div>
-          );
-        })}
-      </div>
+        {/* Responsive Table */}
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr className="border-b border-slate-200 font-extrabold text-slate-700 uppercase tracking-wider bg-slate-50/50">
+                <th className="py-3 px-3">ID</th>
+                <th className="py-3 px-3">Deskripsi Item</th>
+                <th className="py-3 px-3">Spesifikasi</th>
+                <th className="py-3 px-3">Satuan</th>
+                <th className="py-3 px-3 text-center">Vol</th>
+                <th className="py-3 px-3">Harga APBD (Unit)</th>
+                <th className="py-3 px-3">Total APBD</th>
+                <th className="py-3 px-3">Harga e-Katalog (Unit)</th>
+                <th className="py-3 px-3 text-center">Selisih (%)</th>
+                <th className="py-3 px-3 text-center">Status Risiko</th>
+                <th className="py-3 px-3 text-center">Catatan Auditor</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200/60 font-medium">
+              {tableItems.map((item, idx) => {
+                let rowBgClass = "";
+                let badgeClass = "";
 
-      {/* Map + Alert Panel */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Map */}
-        <div className="lg:col-span-2 gs-panel overflow-hidden relative min-h-[500px] flex flex-col">
-          <div className="py-4 px-6 border-b border-white/[0.06] flex justify-between items-center z-10">
-            <div className="flex gap-2 items-center">
-              <MapPin className="h-5 w-5 text-brand-400" />
-              <h3 className="font-semibold text-slate-100">Live Map: Sebaran Proyek</h3>
-            </div>
-            <select className="text-sm bg-white/5 font-medium text-slate-300 px-3 py-1.5 rounded-lg cursor-pointer outline-none border border-white/10 hover:border-white/20">
-              <option className="bg-surface">Semua Kategori</option>
-              <option className="bg-surface">Infrastruktur</option>
-              <option className="bg-surface">Pengadaan IT</option>
-              <option className="bg-surface">Kesehatan</option>
-            </select>
-          </div>
+                if (item.riskLevel === "red") {
+                  rowBgClass = "gov-table-row-red";
+                  badgeClass = "badge-markup-high";
+                } else if (item.riskLevel === "yellow") {
+                  rowBgClass = "gov-table-row-yellow";
+                  badgeClass = "badge-markup-medium";
+                } else if (item.riskLevel === "green") {
+                  rowBgClass = "gov-table-row-green";
+                  badgeClass = "badge-markup-normal";
+                } else {
+                  rowBgClass = "gov-table-row-yellow";
+                  badgeClass = "badge-potensi-markup";
+                }
 
-          <div className="flex-1 relative overflow-hidden">
-            <IndonesiaMap />
-
-            {/* Legend Overlay */}
-            <div className="absolute bottom-4 left-4 glass-panel p-3 rounded-xl z-[1000]">
-              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Legend</p>
-              <div className="flex items-center gap-2 text-xs font-medium mb-1.5 text-slate-300">
-                <div className="w-3 h-3 rounded-full bg-brand-500" />
-                <span>Proyek Bersih</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs font-medium text-slate-300">
-                <div className="w-3 h-3 rounded-full bg-red-500" />
-                <span>Anomali Terdeteksi</span>
-              </div>
-            </div>
-
-            {/* Stats overlay */}
-            <div className="absolute top-4 right-4 glass-panel p-3 rounded-xl z-[1000]">
-              <div className="text-xs font-bold text-slate-200 mb-1.5">Ringkasan</div>
-              <div className="space-y-1 text-[11px] text-slate-400">
-                <div className="flex justify-between gap-4"><span>Total Proyek:</span><span className="font-bold text-blue-400 font-data">8</span></div>
-                <div className="flex justify-between gap-4"><span>Anomali:</span><span className="font-bold text-red-400 font-data">4</span></div>
-                <div className="flex justify-between gap-4"><span>Bersih:</span><span className="font-bold text-brand-400 font-data">4</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Alert Anomali Panel */}
-        <div className="gs-panel flex flex-col relative overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(239,68,68,0.06) 0%, #111827 60%)' }}>
-          <div className="h-1 w-full bg-red-500"></div>
-          <div className="p-5 flex-1 flex flex-col">
-            <div className="flex items-center gap-2 mb-4 text-red-400">
-              <AlertTriangle className="h-5 w-5" />
-              <h3 className="font-bold uppercase tracking-wide text-sm">Anomali Terdeteksi</h3>
-              <span className="ml-auto text-[10px] font-data text-slate-500">ID #4091</span>
-            </div>
-
-            <div className="mb-5">
-              <h4 className="text-lg font-bold text-slate-50 leading-tight mb-3">Pengadaan Laptop Dinas Eksekutif</h4>
-              <div className="space-y-2 text-sm">
-                <p className="flex justify-between"><span className="text-slate-500">Lokasi:</span> <span className="font-medium text-slate-200">Kab. Bandung, Jabar</span></p>
-                <p className="flex justify-between"><span className="text-slate-500">Nilai Proyek:</span> <span className="font-medium text-slate-200 font-data">Rp 12,5 M</span></p>
-                <p className="flex justify-between items-center"><span className="text-slate-500">Status Vendor:</span> <span className="font-medium text-red-400 bg-red-500/10 px-2 py-0.5 rounded text-xs border border-red-500/20">Berisiko Tinggi</span></p>
-              </div>
-            </div>
-
-            <h5 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Perbandingan Harga Satuan (Juta)</h5>
-
-            <div className="h-44 w-full mb-4 bg-white/[0.02] rounded-xl p-2 border border-white/[0.06]">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={chartData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(148,163,184,0.1)" />
-                  <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#94A3B8' }} axisLine={false} tickLine={false} />
-                  <YAxis tick={{ fontSize: 10, fill: '#94A3B8' }} axisLine={false} tickLine={false} tickFormatter={(val) => `${val}`} />
-                  <Tooltip cursor={{ fill: 'rgba(148,163,184,0.06)' }} contentStyle={tooltipStyle} formatter={(value) => [`Rp ${value} Juta`, 'Harga']} />
-                  <Bar dataKey="value" radius={[4, 4, 0, 0]} barSize={32} />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-
-            <div className="bg-red-500/[0.07] rounded-xl p-3 text-sm border border-red-500/15">
-              <p className="font-semibold text-slate-200 mb-1 text-xs flex items-center gap-1.5"><span>🤖</span> AI Kesimpulan</p>
-              <p className="text-slate-400 leading-snug text-xs">Harga Rp 25,4 Jt berada <strong className="text-red-400">+51%</strong> di atas harga wajar LKPP (Rp 18,2 Jt). Dengan qty <strong className="text-slate-200">492 unit</strong>, potensi kerugian negara <strong className="text-red-400">Rp 4,2 Miliar</strong>.</p>
-            </div>
-
-            <div className="mt-auto pt-5">
-              <button
-                onClick={() => setActiveTab('price_oracle')}
-                className="w-full flex items-center justify-center gap-2 py-2.5 bg-brand-500 hover:bg-brand-600 text-[#022c22] rounded-xl font-bold transition-colors text-sm"
-              >
-                <span>Investigasi di Oracle</span>
-                <ChevronRight className="h-4 w-4" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Dispute Resolution Module */}
-      <div className="gs-panel overflow-hidden">
-        <div className="py-4 px-6 border-b border-white/[0.06] bg-white/[0.02] flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-          <div className="flex items-center gap-2 text-slate-100">
-            <AlertTriangle className="h-5 w-5 text-gold-400" />
-            <h3 className="font-bold text-sm uppercase tracking-wider">Penyelesaian Sengketa Penangguhan Dana</h3>
-          </div>
-          <span className="text-[10px] bg-red-500/15 text-red-400 border border-red-500/20 px-2.5 py-1 rounded-full font-bold w-fit">2 PENANGGUHAN DANA</span>
-        </div>
-
-        <div className="p-6">
-          <p className="text-xs text-slate-500 mb-4 leading-relaxed max-w-4xl">
-            Jika sistem mendeteksi ketidaksesuaian proyek di lapangan dari laporan warga (Citizen Mining), pencairan dana proyek dibekukan secara otomatis. Kontraktor dan Pemda dapat mengajukan bukti sanggahan untuk dimediasi secara transparan agar roda pembangunan tetap berjalan adil.
-          </p>
-
-          <div className="overflow-x-auto custom-scrollbar -mx-2">
-            <table className="w-full text-left text-xs border-collapse min-w-[860px]">
-              <thead>
-                <tr className="text-slate-500 font-semibold border-b border-white/[0.06]">
-                  <th className="py-3 px-4">Nama Proyek & Wilayah</th>
-                  <th className="py-3 px-4">Nilai Dana Ditangguhkan</th>
-                  <th className="py-3 px-4">Penyebab Penangguhan</th>
-                  <th className="py-3 px-4">Tanggal Pembekuan</th>
-                  <th className="py-3 px-4">Sanggahan Kontraktor</th>
-                  <th className="py-3 px-4">Status Mediasi</th>
-                  <th className="py-3 px-4 text-right">Tindakan</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/[0.04]">
-                <tr className="hover:bg-white/[0.02]">
-                  <td className="py-4 px-4 font-semibold text-slate-100">
-                    Jembatan Cisangkuy, Kab. Bandung
-                    <span className="block text-[10px] font-normal text-slate-500">Kontraktor: PT Sinar Karya Mandiri</span>
-                  </td>
-                  <td className="py-4 px-4 font-bold text-red-400 font-data">Termin III (Rp 1,4 M)</td>
-                  <td className="py-4 px-4">
-                    <span className="text-slate-300 font-medium">Pembangunan Terlambat</span>
-                    <span className="block text-[10px] text-red-400">Baru berjalan 40% (Target: 65%)</span>
-                  </td>
-                  <td className="py-4 px-4 text-slate-500 font-data">28 Mei 2026</td>
-                  <td className="py-4 px-4">
-                    <span className="bg-gold-500/10 text-gold-400 border border-gold-500/20 px-2 py-0.5 rounded text-[10px] font-semibold">Bukti Terlampir</span>
-                    <span className="block text-[9px] text-slate-500 mt-0.5">Kendala cuaca (hujan ekstrim)</span>
-                  </td>
-                  <td className="py-4 px-4">
-                    <span className="bg-orange-500/10 text-orange-400 border border-orange-500/20 px-2 py-0.5 rounded text-[10px] font-bold">SEDANG DIMEDIASI</span>
-                  </td>
-                  <td className="py-4 px-4 text-right">
-                    <button className="bg-brand-500 text-[#022c22] px-3 py-1.5 rounded-lg font-bold text-[10px] hover:bg-brand-400 transition-colors">Buka Mediasi</button>
-                  </td>
-                </tr>
-                <tr className="hover:bg-white/[0.02]">
-                  <td className="py-4 px-4 font-semibold text-slate-100">
-                    Aspal Jl. Desa Cibadak
-                    <span className="block text-[10px] font-normal text-slate-500">Kontraktor: CV Paving Makmur</span>
-                  </td>
-                  <td className="py-4 px-4 font-bold text-red-400 font-data">Termin II (Rp 350 Jt)</td>
-                  <td className="py-4 px-4">
-                    <span className="text-slate-300 font-medium">Bahan Tidak Sesuai Spek</span>
-                    <span className="block text-[10px] text-red-400">Ketebalan aspal kurang 3 cm</span>
-                  </td>
-                  <td className="py-4 px-4 text-slate-500 font-data">01 Jun 2026</td>
-                  <td className="py-4 px-4 text-slate-500">Belum ada penjelasan</td>
-                  <td className="py-4 px-4">
-                    <span className="bg-red-500/10 text-red-400 border border-red-500/20 px-2 py-0.5 rounded text-[10px] font-bold">DITANGGUHKAN</span>
-                  </td>
-                  <td className="py-4 px-4 text-right">
-                    <button className="bg-white/5 text-slate-300 border border-white/10 px-3 py-1.5 rounded-lg font-bold text-[10px] hover:bg-white/10 transition-colors">Kirim Teguran</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+                return (
+                  <tr key={idx} className={`${rowBgClass} transition-colors`}>
+                    <td className="py-3.5 px-3 font-mono font-bold text-slate-900">{item.id}</td>
+                    <td className="py-3.5 px-3 font-bold text-slate-900">{item.description}</td>
+                    <td className="py-3.5 px-3 text-slate-600">{item.spec}</td>
+                    <td className="py-3.5 px-3 text-slate-600">{item.unit}</td>
+                    <td className="py-3.5 px-3 text-center font-bold text-slate-900">{item.vol}</td>
+                    <td className="py-3.5 px-3 font-bold text-slate-900">{item.apbdUnit}</td>
+                    <td className="py-3.5 px-3 font-bold text-slate-900">{item.apbdTotal}</td>
+                    <td className="py-3.5 px-3 font-bold text-slate-900">{item.eKatalogUnit}</td>
+                    <td className="py-3.5 px-3 text-center">
+                      <span
+                        className={`inline-block px-2 py-0.5 rounded-full font-bold text-[11px] ${
+                          item.riskLevel === "red"
+                            ? "bg-red-600 text-white"
+                            : item.riskLevel === "yellow"
+                            ? "bg-amber-500 text-white"
+                            : "bg-emerald-600 text-white"
+                        }`}
+                      >
+                        {item.diff}
+                      </span>
+                    </td>
+                    <td className="py-3.5 px-3 text-center">
+                      <span className={badgeClass}>{item.riskStatus}</span>
+                    </td>
+                    <td className="py-3.5 px-3 text-center">
+                      <div className="flex items-center justify-center gap-2">
+                        <button
+                          onClick={() => setActiveTab("price_oracle")}
+                          className="flex items-center gap-1 text-[10px] font-bold text-slate-700 hover:text-red-600 bg-white border border-slate-300 px-2 py-1 rounded shadow-2xs"
+                        >
+                          <FileText className="w-3 h-3" />
+                          <span>Notes</span>
+                        </button>
+                        <button
+                          onClick={() => setActiveTab("price_oracle")}
+                          className="flex items-center gap-1 text-[10px] font-bold text-slate-700 hover:text-red-600 bg-white border border-slate-300 px-2 py-1 rounded shadow-2xs"
+                        >
+                          <ExternalLink className="w-3 h-3" />
+                          <span>Detail</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
