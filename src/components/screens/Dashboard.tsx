@@ -39,8 +39,11 @@ export default function DashboardScreen({ setActiveTab }: { setActiveTab: (tab: 
             <span className="flex items-center gap-1 text-[10px] font-bold text-brand-400 bg-brand-500/10 border border-brand-500/20 px-2 py-0.5 rounded-full">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-400 pulse-live" /> LIVE
             </span>
+            <span className="flex items-center gap-1 text-[10px] font-bold text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 rounded-full">
+              🏦 BPD SP2D Escrow: Active (UU 1/2004)
+            </span>
           </h2>
-          <p className="text-sm text-slate-400 mt-1">Deteksi anomali pengadaan barang & jasa daerah secara real-time (2026)</p>
+          <p className="text-sm text-slate-400 mt-1">Deteksi anomali pengadaan barang & jasa daerah secara real-time & audit sosial partisipatif (2026)</p>
         </div>
         <div className="flex gap-3">
           <div className="relative">

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Kawal Rupiah</string>
+    <string name="title_activity_main">Kawal Rupiah</string>
+    <string name="package_name">id.web.kawalrupiah.app</string>
+    <string name="custom_url_scheme">id.web.kawalrupiah.app</string>
+</resources>
