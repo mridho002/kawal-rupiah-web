@@ -153,24 +153,24 @@ export default function PriceOracleScreen() {
           />
         </div>
 
-        <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
-          {/* Table */}
-          <div className="xl:col-span-3 border border-white/[0.06] rounded-xl overflow-hidden">
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
+          {/* Table Area */}
+          <div className="xl:col-span-8 border border-white/[0.1] rounded-2xl overflow-hidden bg-slate-900/90 shadow-xl">
             <div className="overflow-x-auto custom-scrollbar">
-              <table className="w-full text-left border-collapse min-w-[900px]">
+              <table className="w-full text-left border-collapse min-w-[750px]">
                 <thead>
-                  <tr className="bg-white/[0.04] text-slate-400">
-                    <th className="py-3 px-3 text-[10px] font-bold uppercase tracking-wider">Item / Spek</th>
-                    <th className="py-3 px-3 text-[10px] font-bold uppercase tracking-wider">Satuan</th>
-                    <th className="py-3 px-3 text-[10px] font-bold uppercase tracking-wider text-center">Qty</th>
-                    <th className="py-3 px-3 text-[10px] font-bold uppercase tracking-wider">Diajukan</th>
-                    <th className="py-3 px-3 text-[10px] font-bold uppercase tracking-wider">e-Katalog</th>
-                    <th className="py-3 px-3 text-[10px] font-bold uppercase tracking-wider text-center">Selisih</th>
-                    <th className="py-3 px-3 text-[10px] font-bold uppercase tracking-wider">Daerah</th>
-                    <th className="py-3 px-3 text-[10px] font-bold uppercase tracking-wider text-center">Status</th>
+                  <tr className="bg-slate-950/80 text-slate-200 border-b border-white/[0.1]">
+                    <th className="py-3.5 px-4 text-xs font-black uppercase tracking-wider">Item / Spek</th>
+                    <th className="py-3.5 px-3 text-xs font-black uppercase tracking-wider">Satuan</th>
+                    <th className="py-3.5 px-3 text-xs font-black uppercase tracking-wider text-center">Qty</th>
+                    <th className="py-3.5 px-3 text-xs font-black uppercase tracking-wider text-right">Diajukan</th>
+                    <th className="py-3.5 px-3 text-xs font-black uppercase tracking-wider text-right">e-Katalog</th>
+                    <th className="py-3.5 px-3 text-xs font-black uppercase tracking-wider text-center">Selisih</th>
+                    <th className="py-3.5 px-3 text-xs font-black uppercase tracking-wider">Daerah</th>
+                    <th className="py-3.5 px-4 text-xs font-black uppercase tracking-wider text-center">Status</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/[0.04]">
+                <tbody className="divide-y divide-white/[0.08] text-xs font-medium">
                   {filteredData.map((row) => {
                     const isAnomali = row.status === "ANOMALI";
                     const isSelected = selectedRow === row.id;
@@ -180,32 +180,32 @@ export default function PriceOracleScreen() {
                         onClick={() => setSelectedRow(row.id)}
                         className={`cursor-pointer transition-all duration-150 ${
                           isSelected
-                            ? isAnomali ? 'bg-red-500/10 ring-1 ring-inset ring-red-500/30' : 'bg-brand-500/10 ring-1 ring-inset ring-brand-500/30'
-                            : 'hover:bg-white/[0.03]'
+                            ? isAnomali ? 'bg-red-500/20 ring-1 ring-inset ring-red-500/40' : 'bg-brand-500/20 ring-1 ring-inset ring-brand-500/40'
+                            : 'hover:bg-white/[0.05]'
                         }`}
                       >
-                        <td className="py-3.5 px-3 font-semibold text-slate-100 text-sm">{row.item}</td>
-                        <td className="py-3.5 px-3 text-xs text-slate-500 font-medium">{row.satuan}</td>
-                        <td className="py-3.5 px-3 text-sm font-bold text-center text-slate-200 font-data">{row.qty.toLocaleString('id-ID')}</td>
-                        <td className="py-3.5 px-3 text-sm font-medium text-slate-200 font-data">Rp {row.propUnit} Jt</td>
-                        <td className="py-3.5 px-3 text-sm text-slate-500 font-data">Rp {row.ekatUnit} Jt</td>
-                        <td className={`py-3.5 px-3 text-sm font-bold text-center font-data ${isAnomali ? 'text-red-400' : 'text-slate-400'}`}>
+                        <td className="py-4 px-4 font-bold text-slate-100 text-xs">{row.item}</td>
+                        <td className="py-4 px-3 text-slate-300 font-semibold">{row.satuan}</td>
+                        <td className="py-4 px-3 text-xs font-bold text-center text-slate-100 font-data">{row.qty.toLocaleString('id-ID')}</td>
+                        <td className="py-4 px-3 text-xs font-black text-right text-slate-100 font-data">Rp {row.propUnit} Jt</td>
+                        <td className="py-4 px-3 text-xs font-extrabold text-right text-slate-300 font-data">Rp {row.ekatUnit} Jt</td>
+                        <td className={`py-4 px-3 text-xs font-black text-center font-data ${isAnomali ? 'text-red-400' : 'text-slate-300'}`}>
                           <div className="flex items-center justify-center">
-                            {isAnomali && <ArrowUpRight className="w-3 h-3 mr-0.5" strokeWidth={3} />}
+                            {isAnomali && <ArrowUpRight className="w-3.5 h-3.5 mr-0.5" strokeWidth={3} />}
                             {row.diff}
                           </div>
                         </td>
-                        <td className="py-3.5 px-3">
-                          <div className="flex items-center text-xs text-slate-400">
-                            <MapPin className="w-3 h-3 mr-1 text-slate-500 shrink-0" />
-                            <span className="truncate max-w-[120px]">{row.daerah}</span>
+                        <td className="py-4 px-3">
+                          <div className="flex items-center text-xs font-semibold text-slate-300">
+                            <MapPin className="w-3.5 h-3.5 mr-1 text-slate-400 shrink-0" />
+                            <span className="truncate max-w-[130px]">{row.daerah}</span>
                           </div>
                         </td>
-                        <td className="py-3.5 px-3 text-center">
-                          <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                            isAnomali ? 'bg-red-500/15 text-red-400 border border-red-500/20' : 'bg-brand-500/15 text-brand-400 border border-brand-500/20'
+                        <td className="py-4 px-4 text-center">
+                          <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-black tracking-wider uppercase ${
+                            isAnomali ? 'bg-red-500 text-white shadow-sm shadow-red-500/30' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
                           }`}>
-                            {isAnomali ? <AlertCircle className="w-3 h-3 mr-0.5" /> : <CheckCircle className="w-3 h-3 mr-0.5" />}
+                            {isAnomali ? <AlertCircle className="w-3 h-3 mr-1" /> : <CheckCircle className="w-3 h-3 mr-1" />}
                             {row.status}
                           </span>
                         </td>
@@ -217,9 +217,9 @@ export default function PriceOracleScreen() {
             </div>
           </div>
 
-          {/* Detail Panel */}
-          <div className={`rounded-xl border p-5 flex flex-col ${
-            isAnomaliSelected ? 'border-red-500/20 bg-red-500/[0.04]' : 'border-brand-500/20 bg-brand-500/[0.04]'
+          {/* Detail Panel Area */}
+          <div className={`xl:col-span-4 rounded-2xl border p-5 flex flex-col justify-between ${
+            isAnomaliSelected ? 'border-red-500/30 bg-red-950/30 backdrop-blur-xl' : 'border-brand-500/30 bg-brand-950/20 backdrop-blur-xl'
           }`}>
             <div className="flex items-center justify-between mb-3">
               <h3 className="font-bold text-slate-100 text-sm">Analisis Detail</h3>
