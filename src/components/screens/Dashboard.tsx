@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react";
-import { Search, Bell, Download, ChevronDown, FileText, ExternalLink, Calendar, LogOut, Info, RefreshCw } from "lucide-react";
+import { Search, Bell, Download, ChevronDown, FileText, ExternalLink, Calendar, LogOut, Info, RefreshCw, AlertTriangle, AlertCircle, CheckCircle } from "lucide-react";
 
 export default function DashboardScreen({ setActiveTab }: { setActiveTab: (tab: string) => void }) {
   const [activePeriod, setActivePeriod] = useState("Q3 2024");
@@ -260,16 +260,16 @@ export default function DashboardScreen({ setActiveTab }: { setActiveTab: (tab: 
 
                 if (item.riskLevel === "red") {
                   rowClass = "row-markup-high";
-                  badgeNode = <span className="badge-red">{item.riskStatus}</span>;
+                  badgeNode = <span className="badge-red flex items-center gap-1"><AlertTriangle className="w-3 h-3 text-white shrink-0" /> {item.riskStatus}</span>;
                 } else if (item.riskLevel === "amber") {
                   rowClass = "row-markup-medium";
-                  badgeNode = <span className="badge-amber">{item.riskStatus}</span>;
+                  badgeNode = <span className="badge-amber flex items-center gap-1"><AlertCircle className="w-3 h-3 text-white shrink-0" /> {item.riskStatus}</span>;
                 } else if (item.riskLevel === "green") {
                   rowClass = "row-markup-normal";
-                  badgeNode = <span className="badge-green">{item.riskStatus}</span>;
+                  badgeNode = <span className="badge-green flex items-center gap-1"><CheckCircle className="w-3 h-3 text-white shrink-0" /> {item.riskStatus}</span>;
                 } else {
                   rowClass = "row-markup-medium";
-                  badgeNode = <span className="badge-potensi">{item.riskStatus}</span>;
+                  badgeNode = <span className="badge-potensi flex items-center gap-1"><AlertCircle className="w-3 h-3 text-amber-800 shrink-0" /> {item.riskStatus}</span>;
                 }
 
                 return (
